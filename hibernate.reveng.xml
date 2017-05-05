@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="Redouane" match-name="client"/>
+  <table-filter match-catalog="Redouane" match-name="consumption"/>
+  <table-filter match-catalog="Redouane" match-name="meter"/>
+  <table-filter match-catalog="Redouane" match-name="parameter"/>
+  <table-filter match-catalog="Redouane" match-name="role"/>
+  <table-filter match-catalog="Redouane" match-name="user"/>
+  <table-filter match-catalog="Redouane" match-name="user_client"/>
+  <table-filter match-catalog="Redouane" match-name="user_role"/>
+  <table-filter match-catalog="Redouane" match-name="validity"/>
+</hibernate-reverse-engineering>
