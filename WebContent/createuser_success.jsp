@@ -4,14 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<jsp:include page="inc_head.jsp"/>
-	<body class="inner-container">
+	<body class="container">
 	
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
+		<div class="col-md-3 col-md-offset-1  col-sm-12">
 			<jsp:include page="inc_header.jsp"/>		
 		</div>
 
-		 <div class="col-md-8 col-sm-12 " >	
+		 <div class="col-md-4 col-sm-12 " >	
 			  <div class="page-header">
 			    <h1 class="colored">Utilisateur crée</h1>
 			  </div>

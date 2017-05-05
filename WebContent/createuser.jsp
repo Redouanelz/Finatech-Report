@@ -4,19 +4,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<jsp:include page="inc_head.jsp"/>
-<body class="inner-container">
+<body class="container">
 	
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
+		<div class="col-md-3  col-sm-12">
 			<jsp:include page="inc_header.jsp"/>		
 		</div>
-		 <div class="col-md-8 col-sm-12" >	
+		
+		 <div class="col-md-4 col-md-offset-1 col-sm-12" >	
 			  <div class="page-header">
 			    <h1 class="colored">Nouveau Utilisateur</h1>
 			  </div>
 	 		
 	 					 		
-		    <s:form action="createuser_.action" >			    
+		    <s:form action="createuser_.action" class="card" method="POST">			    
 				
 		      <div class="form-group">
 		        <label for="login">Login :</label>
@@ -50,16 +51,9 @@
 		        	      
 		       </div>
 		
-		       <br>
-					<div class="row">
-						<div class="col-md-6">
-						    <s:submit  cssClass="btn btn-reverse btn-block" value="Ajouter" ></s:submit>
-						
-						</div>
-						<div class="col-md-2">
-						    <button type="reset" class="btn btn-rlz">Annuler</button>		
-						</div>
-					</div>	
+		       <br>				
+						    <s:submit  cssClass="btn btn-success" value="Ajouter" ></s:submit>									
+						    <button type="reset" class="btn btn-primary">Annuler</button>						
 		  </s:form>
 		  
 		  

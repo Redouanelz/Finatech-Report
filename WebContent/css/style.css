@@ -1,5 +1,5 @@
 body{
-	padding-top: 100px;
+	
 }
 
 .dropdown-menu > li > a , .navbar li > a {
@@ -8,6 +8,12 @@ body{
     font-size: 15px;
 }
 
+.card{
+	border-radius: 10px;
+    padding: 40px;
+    color: inherit;
+    background-color: #eee;
+}
 
 .bloc-heading{
 	border-top: 2px solid #1a75ff;

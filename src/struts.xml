@@ -8,8 +8,8 @@
  <package name="default" namespace="/" extends="struts-default">
      
 	  <action name="Login" class="com.example.Login" >
-	   <result name="success">/home.jsp</result>
-	   <result name="error">/authentification.jsp</result>
+		   <result name="success">/facturation.action</result>
+		   <result name="error">/authentification.jsp</result>
 	  </action>
 	  
       <action name="Logout" class="com.example.Login" method="logout">  
@@ -71,7 +71,7 @@
 	  </action>
 	  
        <action name="configParametrer" class="com.example.Config" method="parametrer">
-		   <result name="success">/home.jsp</result>
+		   <result name="success">/facturation.action</result>
 	  </action>
 	      	  		
  </package>
@@ -87,7 +87,7 @@
 	  </action>
 	  
 	   <action name="facturation__" class="com.example.Facturation" method="facturation">
-		   <result name="success">/home.jsp</result>
+		   <result name="success">/facturation.action</result>
 	   </action>
 	   	 
 	

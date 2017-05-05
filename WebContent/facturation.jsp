@@ -6,21 +6,22 @@
 	<jsp:include page="inc_head.jsp"/>
 	
 	
-<body class="inner-container">
+<body class="container">
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
+		<div class="col-md-3 col-sm-12">
 		<jsp:include page="inc_header.jsp"/>
 		</div>
-		<div class="col-md-8 col-sm-12">
+		<div class="col-md-4 col-md-offset-1 col-sm-12">
 				<h1 class="colored">Facturation</h1>
 				<hr>
-		    <s:form action="facturation_" method="GET">
+			<div class="card">
+			    <s:form action="facturation_" method="POST">
 				<div class="form-group ">
 			    	<label for="entite">Entité :</label>
 					<s:select key="entityResult" list="entityList" class="form-control" onchange="this.form.submit()"/>				     
 				</div>
 		 	</s:form>
-			<s:form action="facturation__" method="GET">
+			<s:form action="facturation__" method="POST">
 			<div class="form-group ">
 					<s:textfield type="hidden" key="entityResult"></s:textfield>
 			    	<label for="Compteur">Compteur :</label>
@@ -31,9 +32,10 @@
 					<label >Mois :</label>
 					<s:textfield type="month"  key="month" cssClass="form-control"/>
 					<hr>
-					<s:submit class="btn btn-reverse" value="Valider" />
+					<s:submit class="btn btn-success" value="Valider" />
 				</div>				
 			</s:form>
+			</div>
 		</div>
 	</div>
 </body>

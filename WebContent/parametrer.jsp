@@ -6,31 +6,33 @@
 <html>
 <head>
 	<jsp:include page="inc_head.jsp"/>
-<body class="inner-container">
+<body class="container">
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
+		<div class="col-md-3  col-sm-12">
 			<jsp:include page="inc_header.jsp"/>
 		</div>
 
-		<div class=" col-md-8 col-sm-12">
+		<div class=" col-md-4  col-md-offset-1  col-sm-12">
 			<div class="page-header">
 		  		<h1 class="colored">Parametrages</h1>
 		  		<s:property value="Flash"/>
 			</div>
-			<s:form action="config_" method="GET">
+			
+			
+			<s:form action="config_" method="POST">
 				<div class="form-group ">
 			    	<label for="entite">Entité :</label>
 						<s:select key="entityResult" list="entityList" class="form-control" onchange="this.form.submit()"/>				     
 				</div>
 			</s:form>
-			<s:form action="config__" method="GET">
+			<s:form action="config__" method="POST">
 			<div class="form-group ">
 					<s:textfield type="hidden" key="entityResult"></s:textfield>
 			    	<label for="Compteur">Compteur :</label>
 					<s:select key="metersResult" list="metersList" class="form-control" onchange="this.form.submit()" />				     	
 				</div>
 			</s:form>
-			<s:form action="configValues" method="GET">
+			<s:form action="configValues" method="POST">
 				<div class="form-group">
 			    	<label for="Heure">Parammetres :</label>
 					<s:select key="parametersResult" list="parametersList" class="form-control" onchange="this.form.submit()" />				     				
@@ -39,9 +41,9 @@
 				</div>
 			</s:form>
 			<br><br><br>
-			<s:form method="GET" action="configParametrer">
+			<s:form class="card" method="GET" action="configParametrer">
 									
-				<div class="bloc-heading">
+				<div class="">
 					<div class="form-group">
 						  <label>Ancienne valeur (%) :</label>					  
 						  <s:textfield  class="form-control" key="ValidityResult" disabled="disabled"></s:textfield>
@@ -55,15 +57,10 @@
 						  <s:textfield key="NewValidityResult" class="form-control"></s:textfield>
 					</div>
 					<hr>
-					<div class="row">
-							<div class="col-md-6">
-							    <s:submit  cssClass="btn btn-reverse btn-block" value="Enregistrer" ></s:submit>
-							
-							</div>
-							<div class="col-md-2">
-							    <button type="reset" class="btn btn-rlz">Annuler</button>		
-							</div>
-						</div>	
+			
+							    <s:submit  cssClass="btn btn-success" value="Enregistrer" ></s:submit>				
+							    <button type="reset" class="btn btn-primary">Annuler</button>		
+					
 				</div>
 			</s:form>
 		</div>

@@ -4,15 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<jsp:include page="inc_head.jsp"/>
-	<jsp:include page="inc_head.jsp"/>
-	<body class="inner-container">
+	<body class="container">
 	
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
+		<div class="col-md-3 col-sm-12">
 			<jsp:include page="inc_header.jsp"/>		
 		</div>
 
-		 <div class="col-md-8 col-sm-12 " >	
+		 <div class="col-md-4 col-md-offset-1  col-sm-12 " >	
 			  <div class="page-header">
 			    <h1 class="colored">Utilisateur Modifier</h1>
 			  </div>
@@ -47,14 +46,14 @@
 		  	<hr>
 		 		 	<div class="row">
 						<div class="col-md-6">
-						    <a href="updateuser.action" class="btn btn-reverse btn-block">
+						    <a href="updateuser.action" class="btn btn-success">
 						    <i class="fa fa-edit"></i>	
 						    <b>Modifier un autre utilisateur</b>
 						    </a>
 						
 						</div>
 						<div class="col-md-4">
-						    <a href="home.jsp" class="btn btn-rlz btn-block">
+						    <a href="home.jsp" class="btn btn-primary">
 						    <i class="fa fa-home"></i>	
 						    <b>Retour a l'acueille</b>
 						    </a>
