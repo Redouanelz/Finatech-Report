@@ -44,21 +44,18 @@
 		  
 		  	<br>
 		  	<hr>
-		 		 	<div class="row">
-						<div class="col-md-6">
+		 		 	
 						    <a href="createuser.action" class="btn btn-reverse btn-block">
 						    <i class="fa fa-user-plus"></i>	
 						    <b>Ajouter un autre utilisateur</b>
 						    </a>
 						
-						</div>
-						<div class="col-md-4">
+				
 						    <a href="home.jsp" class="btn btn-rlz btn-block">
 						    <i class="fa fa-home"></i>	
 						    <b>Retour a l'acueille</b>
 						    </a>
-						</div>
-					</div>	
+					
 	    </div>
 	  
 	</div>

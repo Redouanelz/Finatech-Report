@@ -27,11 +27,11 @@
 						<fieldset>
 							<div class="input-group form-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							  <s:textfield id="login" type="text" class="form-control" name="login" placeholder="Entrer Login" />
+							  <s:textfield id="login" type="text" class="form-control" name="login" placeholder="Entrer Login" required="true"/>
 							</div>
 							<div class="input-group">
 							  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							  <s:textfield id="password" type="password" class="form-control" name="password" placeholder="Entrer Mot de passe"/>
+							  <s:textfield id="password" type="password" class="form-control" name="password" placeholder="Entrer Mot de passe" required="true" />
 							</div>
 							<div class="checkbox">
 								<label>

@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -7,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -18,7 +20,6 @@ import com.example.model.Role;
 import com.example.model.User;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import com.sun.glass.ui.CommonDialogs.Type;
 
 public class UpdateUser extends ActionSupport implements Action {
 	
@@ -35,10 +36,12 @@ public class UpdateUser extends ActionSupport implements Action {
 	private String usersResult;
 	
 	private Map<String, String>  rolesList;
-	private String rolesResult;
+	private List<String> rolesResult;
 
 	private Map<String, String>  entityList;
 	private String entityResult;
+
+	
 	
 	
 	/* FILL LIST */
@@ -107,14 +110,13 @@ public class UpdateUser extends ActionSupport implements Action {
 	public String continuer(){
 		System.out.println("continue Called");
 		
-		/* SAVE */					
+		try{
+			/* SAVE */					
 			SessionFactory SF = new Configuration().configure().buildSessionFactory();		
 		  	 Session session0;
 			 session0 = SF.openSession();		
 			 session0.beginTransaction();	
-			 User userget = new User();
-			 Role role = new Role();
-			 Client client = new Client();
+			 User userget = new User();		
 			 
 			 
 			 int id = Integer.parseInt(getUsersResult());
@@ -122,20 +124,43 @@ public class UpdateUser extends ActionSupport implements Action {
 			 
 			 this.usersResult = userget.getId().toString();
 			 
-			 role = (Role) session0.get(Role.class, 1);		
-			 client = (Client) session0.get(Client.class, 1);	
-			 
+			
 			 this.login = userget.getLogin();
 			 this.firstName = userget.getFirstName();
 			 this.lastName = userget.getLastName();
-			 this.password = userget.getPassword();
-					
+			 this.password = userget.getPassword();			 
+			 this.clients = userget.getClients();
+			 this.roles = userget.getRoles();
+
+			 // get the first client id, from the geted list.
+			 if( !this.clients.isEmpty() ) this.entityResult = this.clients.iterator().next().getId().toString();
+			 
+			 
+			 if( !this.roles.isEmpty() ) {				 			     
+				 this.rolesResult = new ArrayList<>(); /* intialize a list to get roles ids in it, then show it in the view. */
+				 for (Role r : roles) {					 			
+					    String x= r.getId().toString();
+					    System.out.println(x);
+					    this.rolesResult.add(x);
+				 }
+			 }
+
+
+			 
 			 System.out.println("user "+ usersResult +" geted continue with success");
 
 			session0.getTransaction().commit();		
 			session0.close();		 
 			
-		return SUCCESS;
+			return SUCCESS;
+		}
+		 catch (Exception e)
+		 {
+			 System.out.println("Exception");			
+			 e.printStackTrace() ;		
+			 return SUCCESS;
+		 }
+		
 	}
 	
 	/* EXECUTE */
@@ -152,9 +177,14 @@ public class UpdateUser extends ActionSupport implements Action {
 				 Role role = new Role();
 				 Client client = new Client();
 				 
-				 System.out.println("user : "+ this.usersResult + " role : " + getRolesResult()  + " ntity :  " + getEntityResult());
 				 user = (User) session0.get(User.class, Integer.parseInt(this.usersResult));	
-				 role = (Role) session0.get(Role.class, Integer.parseInt(getRolesResult()));
+				 
+				 /* roles geted from from view */
+			    Set<Role> rolesResultList = new HashSet<Role>(0);
+				 for (String r : this.rolesResult) {
+					    rolesResultList.add( (Role) session0.get(Role.class, Integer.parseInt(r)));
+				 }
+				 /* client geted from the view */
 				 client = (Client) session0.get(Client.class, Integer.parseInt(getEntityResult()));					
 				 
 				 user.setFirstName(firstName);
@@ -162,7 +192,7 @@ public class UpdateUser extends ActionSupport implements Action {
 				 user.setPassword(password);
 				 user.getRoles().clear();
 				 user.getClients().clear();
-				 user.getRoles().add(role);
+				 user.getRoles().addAll(rolesResultList);
 				 user.getClients().add(client);
 				 
 				 session0.update(user);	
@@ -237,14 +267,6 @@ public class UpdateUser extends ActionSupport implements Action {
 		this.rolesList = rolesList;
 	}
 
-	public String getRolesResult() {
-		return rolesResult;
-	}
-
-	public void setRolesResult(String rolesResult) {
-		this.rolesResult = rolesResult;
-	}
-
 	public Map<String, String> getEntityList() {
 		return entityList;
 	}
@@ -268,6 +290,15 @@ public class UpdateUser extends ActionSupport implements Action {
 		this.usersResult = usersResult;
 	}
 
+	public List<String> getRolesResult() {
+		return rolesResult;
+	}
+
+	public void setRolesResult(List<String> rolesResult) {
+		this.rolesResult = rolesResult;
+	}
+	
+	
 	
 	
 }

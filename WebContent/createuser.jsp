@@ -21,33 +21,33 @@
 				
 		      <div class="form-group">
 		        <label for="login">Login :</label>
-		        <s:textfield type="text" class="form-control" key="login" placeholder="Entrer login" value=""/>
+		        <s:textfield type="text" class="form-control" key="login" placeholder="Entrer login" value="" required="true" />
 		      </div>
 		      <div class="form-group">
 		        <label for="prenom">Prenom :</label>
-		        <s:textfield type="text" class="form-control" key="lastName" placeholder="Entrer prénom" value=""/>
+		        <s:textfield type="text" class="form-control" key="lastName" placeholder="Entrer prénom" value="" required="true" />
 		      </div>
 		      <div class="form-group">
 		        <label for="nom">Nom :</label>
-		        <s:textfield type="text" class="form-control" key="firstName" placeholder="Entrer nom" value="" />
+		        <s:textfield type="text" class="form-control" key="firstName" placeholder="Entrer nom" value="" required="true"  />
 		      </div>
 		      <div class="form-group">
 		        <label for="password">Mot de passe :</label>
-		        <s:textfield type="text" class="form-control" key="password" placeholder="Entrer Mot de passe" value="free" />
+		        <s:textfield type="text" class="form-control" key="password" placeholder="Entrer Mot de passe" value="free" required="true"  />
 		      </div>  	
 		      <div class="form-group">
 		        <label for="Organisme">Entité  :</label>
 						<s:select cssClass="form-control"
-							headerKey="-1" headerValue="Selectionner"
+							headerKey="" headerValue="Selectionner"   required="true" 
 							list="entityList" 
 							name="entityResult" 
-							value="hey" />		        	       		     		      
+						   />		        	       		     		      
 		       </div>
 		       <br>
 		       <div class="form-group">
 		        <label>Rôles : </label>
 		        <br />		        
-		        <s:radio list="rolesList" name="rolesResult" ></s:radio>  
+			    <s:checkboxlist list="rolesList" key="rolesResult"  ></s:checkboxlist>
 		        	      
 		       </div>
 		

@@ -54,7 +54,7 @@
 					
 					<div class="form-group">
 						  <label>Nouvelle valeur (%):</label>
-						  <s:textfield key="NewValidityResult" class="form-control"></s:textfield>
+						  <s:textfield key="NewValidityResult" class="form-control" required="true"></s:textfield>
 					</div>
 					<hr>
 			

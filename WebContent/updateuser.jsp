@@ -11,7 +11,7 @@
 			<jsp:include page="inc_header.jsp"/>		
 		</div>
 
-		 <div class="col-md-4 col-md-offset-1 col-sm-12 " >	
+		 <div class="col-md-5 col-md-offset-1 col-sm-12 " >	
   		<div class="page-header">
   			<h1 class="colored">Modifier Utilisateur</h1>
 		</div>
@@ -28,30 +28,31 @@
 	  	
 	 
 		  		  	 <s:textfield key="usersResult" type="hidden"></s:textfield>
-	  		  	<hr> <br>
+	  		 
 	  		  		 <div class="form-group">	  		  	  			  		 
 				        <label for="prenom">Login :</label>  
-				        <s:textfield type="text" class="form-control"  name="login" placeholder="Entrer votre login"  />
+				        <s:textfield type="text" class="form-control"  name="login" placeholder="Entrer votre login"   required="true" />
 				      </div>
 	  		  		  <div class="form-group">	  		  	  			  		 
 				        <label for="prenom">Prenom :</label>
-				        <s:textfield type="text" class="form-control" key="lastName" placeholder="Entrer prénom"  />
+				        <s:textfield type="text" class="form-control" key="lastName" placeholder="Entrer prénom"   required="true" />
 				      </div>
 				      <div class="form-group">
 				        <label for="nom">Nom :</label>
-				        <s:textfield type="text" class="form-control" key="firstName" placeholder="Entrer nom"  />
+				        <s:textfield type="text" class="form-control" key="firstName" placeholder="Entrer nom"   required="true" />
 				      </div>
 				      <div class="form-group">
 				        <label for="password">Mot de passe :</label>
-				        <s:textfield type="text" class="form-control" key="password" placeholder="Entrer Mot de passe"  />
+				        <s:textfield type="text" class="form-control" key="password" placeholder="Entrer Mot de passe"   required="true" />
 				      </div>  	
 				      <div class=form-group>
 				      	<label>Entité</label>
-						<s:select key="entityResult" list="entityList" class="form-control" />				     
+						<s:select key="entityResult" list="entityList" class="form-control" 
+								  headerKey="" headerValue="Selectionner"   required="true"  />				     
 				      </div>
 				      <div class=form-group>
 				      	<label>roles</label> <br>
-						  <s:radio list="rolesList" name="rolesResult" value="rolesResult"></s:radio>  
+						  <s:checkboxlist list="rolesList" key="rolesResult" ></s:checkboxlist>
 				      </div>
 		
 		

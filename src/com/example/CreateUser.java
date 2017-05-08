@@ -2,7 +2,10 @@ package com.example;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.derby.tools.sysinfo;
@@ -28,10 +31,10 @@ public class CreateUser extends ActionSupport implements Action  {
 	private Set<Client> clients = new HashSet<Client>(0);
 	private Set<Role> roles = new HashSet<Role>(0);
 	
-	private List<String> rolesList;
-	private String rolesResult;
+	private Map<String, String>  rolesList;
+	private List<String> rolesResult;
 
-	private List<String> entityList;
+	private Map<String, String> entityList;
 	private String entityResult;
 
 	/* FILL LIST */
@@ -57,11 +60,53 @@ public class CreateUser extends ActionSupport implements Action  {
 		 }
 	}
 
+	
+	
+	/* FILL LIST */
+	public Map<String, String> FillList(String Modal, String Champ,String Key){
+		 try{			
+			 						
+				Map<String, String> RMap = new LinkedHashMap<String, String>();
+
+			 	SessionFactory SF = new Configuration().configure().buildSessionFactory();		
+				Session session;
+			    session = SF.openSession();		
+				session.beginTransaction();		
+
+				
+				Query QKey = session.createQuery(" SELECT "+ Key+" FROM " + Modal);	
+				List<String> RKey = (List<String>) QKey.list();
+				
+				Query QVal = session.createQuery(" SELECT " + Champ  + " FROM " + Modal);	
+				List<String> RVal = (List<String>) QVal.list();
+							
+
+				Iterator<String> i1 = RKey.iterator();
+				Iterator<String> i2 = RVal.iterator();
+				while (i1.hasNext() && i2.hasNext()) {
+				    RMap.put( String.valueOf(i1.next())  , String.valueOf(i2.next()));
+				}
+				
+				
+				session.getTransaction().commit();		
+				session.close();			 																							
+
+				return RMap;
+		 } 
+		 catch (Exception e)
+		 {
+			 System.out.println("Exception");
+			 e.printStackTrace() ;
+			 return null;
+		 }
+	}
+
+	
 	/* CONSTRUCT */
 	public CreateUser(){
 		System.out.println("Fill List");			
-		rolesList = this.FillList("Role", "label");		
-		entityList = this.FillList("Client", "name");		
+		rolesList = this.FillList("Role", "label","id");		
+		entityList = this.FillList("Client", "name","id");		
 	}
 	
 	
@@ -85,15 +130,23 @@ public class CreateUser extends ActionSupport implements Action  {
 					 session0.beginTransaction();		
 					 Role role = new Role();
 					 Client client = new Client();
-					 role = (Role) session0.get(Role.class, 1);		
-					 client = (Client) session0.get(Client.class, 1);		
+					
+					 
+					 /* roles geted from from view */
+				    Set<Role> rolesResultList = new HashSet<Role>(0);
+					 for (String r : this.rolesResult) {
+						    rolesResultList.add( (Role) session0.get(Role.class, Integer.parseInt(r)));
+					 }
+					 /* client geted from the view */
+					 client = (Client) session0.get(Client.class, Integer.parseInt(getEntityResult()));					
+					 
 					 
 					 User user = new User();
 					 user.setLogin(login);
 					 user.setFirstName(firstName);
 					 user.setLastName(lastName);
 					 user.setPassword(password);
-					 user.getRoles().add(role);
+					 user.getRoles().addAll(rolesResultList);
 					 user.getClients().add(client);
 					 
 					 session0.save(user);					
@@ -164,32 +217,7 @@ public class CreateUser extends ActionSupport implements Action  {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-
-	public List<String> getRolesList() {
-		return rolesList;
-	}
-
-	public void setRolesList(List<String> rolesList) {
-		this.rolesList = rolesList;
-	}
-
-
-	public String getRolesResult() {
-		return rolesResult;
-	}
-
-	public void setRolesResult(String rolesResult) {
-		this.rolesResult = rolesResult;
-	}
-
-	public List<String> getEntityList() {
-		return entityList;
-	}
-
-	public void setEntityList(List<String> entityList) {
-		this.entityList = entityList;
-	}
-
+	
 	public String getEntityResult() {
 		return entityResult;
 	}
@@ -198,6 +226,43 @@ public class CreateUser extends ActionSupport implements Action  {
 		this.entityResult = entityResult;
 	}
 
+
+
+	public Map<String, String> getRolesList() {
+		return rolesList;
+	}
+
+
+
+	public void setRolesList(Map<String, String> rolesList) {
+		this.rolesList = rolesList;
+	}
+
+
+
+	public List<String> getRolesResult() {
+		return rolesResult;
+	}
+
+
+
+	public void setRolesResult(List<String> rolesResult) {
+		this.rolesResult = rolesResult;
+	}
+
+
+
+	public Map<String, String> getEntityList() {
+		return entityList;
+	}
+
+
+
+	public void setEntityList(Map<String, String> entityList) {
+		this.entityList = entityList;
+	}
+
+	
 
 	
 }

@@ -6,12 +6,9 @@
 	<jsp:include page="inc_head.jsp"/>
 <body class="inner-container">
 	<div class="row">
-		<div class="col-md-4 col-sm-12">
+		<div class="col-md-12 col-sm-12">
 		<jsp:include page="inc_header.jsp"/>
-		</div>
-		<div class="col-md-8 col-sm-12">
-			<h1 class="colored">Succés.</h1>
-		</div>
+		</div>		
 	</div>
 </body>
 </html>
