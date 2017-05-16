@@ -5,13 +5,22 @@
  
 <struts>
 <constant name="struts.ui.theme" value="simple" /> 
+
+   	 
+	<!--  
+	<package name="default" namespace="/" extends="struts-default">
+  		<action name="Report" class="com.example.Report">
+   			<result name="ok">/CrystalReport-viewer.jsp</result>
+   			<result name="error">/facturation.jsp</result>
+ 		 </action>
+ 	</package>    
+ 	 -->
+    
  <package name="default" namespace="/" extends="struts-default">
      
 	  <action name="Login" class="com.example.Login" >
-		    <result name="success" type="redirectAction">
-              <param name="actionName">facturation</param>
-             </result>
-		   <result name="error">/authentification.jsp</result>
+		    <result name="success">/home.jsp</result>
+		    <result name="error">/authentification.jsp</result>
 	  </action>
 	  
       <action name="Logout" class="com.example.Login" method="logout">  
@@ -24,7 +33,9 @@
   <package name="createuser" namespace="/" extends="struts-default">
       
       <action name="createuser" class="com.example.CreateUser" method="display">
-		   <result name="none">/createuser.jsp</result>
+		   <result name="none">/createuser.jsp</result> 
+		   
+			<result name="login">/authentification.jsp</result>
 	  </action>
 
        <action name="createuser_" class="com.example.CreateUser" method="create">
@@ -38,6 +49,8 @@
       
       <action name="updateuser" class="com.example.UpdateUser" method="display">
 		   <result name="none">/updateuser.jsp</result>
+		   
+			<result name="login">/authentification.jsp</result>
 	  </action>
 	  
        <action name="updateuser_continue" class="com.example.UpdateUser" method="continuer">
@@ -58,6 +71,8 @@
       
       <action name="config" class="com.example.Config" method="display">
 		   <result name="none">/parametrer.jsp</result>
+		   
+			<result name="login">/authentification.jsp</result>		          
 	  </action>
 	  
        <action name="config_" class="com.example.Config" method="display2">
@@ -85,6 +100,8 @@
       
       <action name="facturation" class="com.example.Facturation" method="display">
 		   <result name="none">/facturation.jsp</result>
+		   
+		    <result name="login">/authentification.jsp</result>		          		   		   
 	  </action>
 	  
 	    <action name="facturation_" class="com.example.Facturation" method="display2">
@@ -95,11 +112,8 @@
 		     <result name="success" type="redirectAction">
               <param name="actionName">facturation</param>
              </result>
-             <result name="error">/facturation.action</result>		   		  		     
-	   </action>
-	   	 
-	
-	      	  		
+             <result name="error">/facturation.action</result>		             		  		    
+	   </action>		      	  	
  </package>
  
   

@@ -1,12 +1,17 @@
 package com.example;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.apache.derby.tools.sysinfo;
+import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -17,9 +22,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 
 import com.example.model.Consumption;
+import com.example.model.Role;
 
 
-public class Facturation extends ActionSupport {
+public class Facturation extends ActionSupport implements SessionAware {
 
 
 	private static final String key = "-1";
@@ -32,6 +38,17 @@ public class Facturation extends ActionSupport {
 	private String metersResult;
 	
 	private String month;
+	
+	private Map<String, Object> session;
+	
+    Set<Role> roles = new HashSet<Role>(0);
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session = session;					
+	}
+	
 	
 	
 	
@@ -157,8 +174,7 @@ public class Facturation extends ActionSupport {
 	/* CONSTRUCT */
 	public Facturation(){
 		try{
-			System.out.println("Fill List");	
-
+			System.out.println("Fill List");					
 		}
 		 catch (Exception e)
 		 {
@@ -166,15 +182,26 @@ public class Facturation extends ActionSupport {
 			 e.printStackTrace() ;		
 		 }
 	}
-	
-	
+		
 	/* DISPLAY */
 	public String display(){
+		
 		try{
 			System.out.println("display called");
 			entityList = this.FillList("Client", "name", "id");	
 			metersList.put(key, value);
-			return NONE;
+			
+			User user = (User) this.session.get("login_user");
+			if(user == null)
+			{
+				System.out.println("IsLoggedIn : redirect to login.");
+				return LOGIN;			
+			}
+			else{
+				System.out.println("IsLoggedIn : redirect to success.");
+				return NONE;
+			}
+
 		}	 
 		catch (Exception e)
 		 {
@@ -311,4 +338,7 @@ public class Facturation extends ActionSupport {
 	public void setMonth(String month) {
 		this.month = month;
 	}
+
+
+	
 }

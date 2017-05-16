@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.derby.tools.sysinfo;
+import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -20,7 +21,7 @@ import com.example.model.Role;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CreateUser extends ActionSupport implements Action  {
+public class CreateUser extends ActionSupport implements SessionAware  {
 	
 	private Integer id;
 	private String login;
@@ -37,6 +38,13 @@ public class CreateUser extends ActionSupport implements Action  {
 	private Map<String, String> entityList;
 	private String entityResult;
 
+	private Map<String, Object> session;
+	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session = session;					
+	}
 	/* FILL LIST */
 	public List<String> FillList(String Modal, String Champ){
 		 try{			 			   
@@ -114,7 +122,17 @@ public class CreateUser extends ActionSupport implements Action  {
 	public String display() {
 		System.out.println("display called");
 
-		return NONE;
+		
+		User user = (User) this.session.get("login_user");
+		if(user == null)
+		{
+			System.out.println("IsLoggedIn : redirect to login.");
+			return LOGIN;			
+		}
+		else{
+			System.out.println("IsLoggedIn : redirect to success.");
+			return NONE;
+		}
 	}
 	
 

@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,7 +20,7 @@ import com.example.model.User;
 import com.example.model.Validity;
 import com.example.model.Parameter;
 
-public class Config extends ActionSupport {
+public class Config extends ActionSupport implements SessionAware {
 
 	private static final String key = "-1";
 	private static final String value = "Aucune selection";
@@ -39,6 +40,15 @@ public class Config extends ActionSupport {
 	private String NewValidityResult;
 	
 	public String Flash;
+	
+
+	private Map<String, Object> session;
+	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session = session;					
+	}
 	
 	/* FILL LIST */
 	public Map<String, String> FillList(String Modal, String Champ,String Key){
@@ -97,7 +107,7 @@ public class Config extends ActionSupport {
 				Query QVal = session.createQuery(" SELECT " + Champ  + " FROM " + Modal + " WHERE " + Where );	
 				List<String> RVal = (List<String>) QVal.list();
 				
-				RMap.put( this.key, this.value);
+				RMap.put( this.key, this.value );
 
 				Iterator<String> i1 = RKey.iterator();
 				Iterator<String> i2 = RVal.iterator();
@@ -180,7 +190,18 @@ public class Config extends ActionSupport {
 			entityList = this.FillList("Client", "name", "id");	
 			metersList.put(key, value);
 			parametersList.put(key, value);		
-			return NONE;
+			
+
+			User user = (User) this.session.get("login_user");
+			if(user == null)
+			{
+				System.out.println("IsLoggedIn : redirect to login.");
+				return LOGIN;			
+			}
+			else{
+				System.out.println("IsLoggedIn : redirect to success.");
+				return NONE;
+			}
 		}	 
 		catch (Exception e)
 		 {

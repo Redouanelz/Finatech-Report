@@ -6,7 +6,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import com.example.model.*;
+import com.example.model.User;
 
 public class HibernateUtil {
 	
@@ -17,12 +17,6 @@ public class HibernateUtil {
             try {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(User.class);
-                configuration.addAnnotatedClass(Role.class);
-                configuration.addAnnotatedClass(Client.class);
-                configuration.addAnnotatedClass(Consumption.class);
-                configuration.addAnnotatedClass(Meter.class);
-                configuration.addAnnotatedClass(Validity.class);
-                configuration.addAnnotatedClass(Parameter.class);
                 serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);

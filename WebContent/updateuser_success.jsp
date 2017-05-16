@@ -13,7 +13,7 @@
 
 		 <div class="col-md-4 col-md-offset-1  col-sm-12 " >	
 			  <div class="page-header">
-			    <h1 class="colored">Utilisateur Modifier</h1>
+			    <h1 class="colored">Utilisateur Modifier :  <s:property value="login"/> </h1>
 			  </div>
 	 		
 	 		<div class="row">
@@ -28,17 +28,7 @@
 	 			
 	 			</div>
 	 			
-	 				 <b>Login :</b> <br>
-			 		 <s:property value="login"/> <br>
-			 		 <b>Prénom :</b> <br>
-			 		 <s:property value="lastName"/> <br>
-			 		 <b>Nom : </b><br>
-			 		 <s:property value="firstName"/> <br>
-			 		
-				  	 <b> Entité : </b><br>
-				  	  <s:property value="entityResult"/> <br>
-				  	 <b>Role   :</b> <br>
-				  	 <s:property value="rolesResult"/> <br>
+	 		
 	 			</div>
 	 		</div>
 		  

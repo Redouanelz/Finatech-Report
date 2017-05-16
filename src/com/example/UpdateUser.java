@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -21,7 +22,7 @@ import com.example.model.User;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UpdateUser extends ActionSupport implements Action {
+public class UpdateUser extends ActionSupport implements SessionAware {
 	
 	private Integer id;
 	private String login;
@@ -42,7 +43,14 @@ public class UpdateUser extends ActionSupport implements Action {
 	private String entityResult;
 
 	
+
+	private Map<String, Object> session;
 	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session = session;					
+	}
 	
 	/* FILL LIST */
 	public Map<String, String> FillList(String Modal, String Champ,String Key){
@@ -103,7 +111,17 @@ public class UpdateUser extends ActionSupport implements Action {
 	/* DISPLAY */
 	public String display() {
 		System.out.println("display called");
-		return NONE;
+
+		User user = (User) this.session.get("login_user");
+		if(user == null)
+		{
+			System.out.println("IsLoggedIn : redirect to login.");
+			return LOGIN;			
+		}
+		else{
+			System.out.println("IsLoggedIn : redirect to success.");
+			return NONE;
+		}
 	}
 	
 	/* CONTINUE */

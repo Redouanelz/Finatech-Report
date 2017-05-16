@@ -13,7 +13,8 @@
 
 		 <div class="col-md-4 col-sm-12 " >	
 			  <div class="page-header">
-			    <h1 class="colored">Utilisateur crée</h1>
+			    <h1 class="colored">Utilisateur crée :  <s:property value="login"/> <br>
+			    </h1>
 			  </div>
 	 		
 	 		<div class="row">
@@ -26,19 +27,8 @@
 	 			</div>
 	 			<div class="padding-10">
 	 			
-	 			</div>
-	 			
-	 				 <b>Login :</b> <br>
-			 		 <s:property value="login"/> <br>
-			 		 <b>Prénom :</b> <br>
-			 		 <s:property value="lastName"/> <br>
-			 		 <b>Nom : </b><br>
-			 		 <s:property value="firstName"/> <br>
-			 		
-				  	 <b> Entité : </b><br>
-				  	  <s:property value="entityResult"/> <br>
-				  	 <b>Role   :</b> <br>
-				  	 <s:property value="rolesResult"/> <br>
+	 			</div>	 		
+			 	
 	 			</div>
 	 		</div>
 		  

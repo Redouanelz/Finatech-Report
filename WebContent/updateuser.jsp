@@ -19,7 +19,7 @@
 				<div class="bloc" style="margin-bottom: 20px;">
 							<label for="Organisme">Choisissez l'utilisateur :</label>				
 	
-					<s:select key="usersResult" list="usersList" class="form-control" onchange="this.form.submit()" required="true"  />
+					<s:select headerKey="" headerValue="Selectionner" key="usersResult" list="usersList" class="form-control" onchange="this.form.submit()" required="true"  />
 				</div>
 		    	
 					
